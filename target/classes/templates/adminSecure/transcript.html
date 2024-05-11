@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Transcript Page</title>
+	<!-- Author:      Sarah McCrie 991405606
+        Program:      A4_mccries
+        Date:         [12-07-2023]
+        Version:      1.0     
+        Description:  This is my assignment 4
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:replace="header :: headerFragment"></div>
+    
+    </div>
+	<div class="formarea">
+		<form method="post" action="#" th:action="@{/searchEnrollment}"     th:object="${enrollment}">
+
+			<div class="labelAndInput"> <label class="label">Student ID:</label> <input type="number" class="searchId"
+					th:field="*{studentId}" /> </div> <br>
+
+			<input type="submit" class="searchStudent" value="Search" id="searchRecordButton" />
+
+		</form>
+	</div>
+    
+    <p> Date: <span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">[Current Date]</span><br>
+		Student Name: [[${lastName}]], [[${firstName}]]<br>
+		Student ID: [[${studentId}]]
+	</p>
+	
+	<div>
+		<table>
+			<tr>
+				<th>Course</th>
+				<th>Grade</th>
+				<th>Term</th>
+			</tr>
+
+			<tr th:each="aEnrollment : ${enrollmentList}">
+				<td th:text="${aEnrollment.courseName}"></td>
+				<td th:text="${aEnrollment.grade}"></td>
+				<td th:text="${aEnrollment.termName}"></td>
+			</tr>
+
+			
+		</table>
+	</div>
+    
+    
+</body>
+</html>

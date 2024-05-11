@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Course Registration Page</title>
+	<!-- Author:      Sarah McCrie 991405606
+        Program:      A4_mccries
+        Date:         [12-07-2023]
+        Version:      1.0     
+        Description:  This is my assignment 4
+    -->
+	<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:replace="header :: headerFragment"></div>
+    
+    <div>
+		<table>
+			<tr>
+				<th>Course ID</th>
+				<th>Course Name</th>
+				<th>Register</th>
+			</tr>
+
+			<tr th:each="aCourse : ${courseList}">
+				<td th:text="${aCourse.CourseId}"></td>
+				<td th:text="${aCourse.courseName}"></td>
+				<td>
+					<form th:action="@{/secure/CourseReg}" method="post">
+						<input type="hidden" name="courseId" th:value="${aCourse.CourseId}" />
+						<input type="submit" value="Register" />
+					</form>
+				</td>
+			</tr>
+
+			
+		</table>
+	</div>
+    
+    
+</body>
+</html>
